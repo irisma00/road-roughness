@@ -40,6 +40,6 @@ app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
 
 
-app.listen(8443, () => {
+app.listen(8964, () => {
     console.log("Server started on Port 8443");
 });
