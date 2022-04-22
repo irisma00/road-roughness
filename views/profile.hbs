@@ -6,59 +6,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/mode.css">
     <title>Document</title>
 </head>
 <body>
 
-    <nav class="nav">
-      <h4 style="padding-top: 2%; padding-left:2%">Road Roughness Database Management</h4>
-    </nav>
-    <ul class="nav justify-content-end" style="--bs-text-opacity: .5;>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/register">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/trip">Trip</a></li>
+        <li class="nav-item"><a class="nav-link" href="/profile" style="color: white;">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="/auth/logout">Logout</a></li>
+      </ul>
+
+      <div class="nav-item name_box" >
+        <p>Hello, {{user.first_name}}</p>
+      </div>
+
+      <div class="d-flex nav-item mode" >
+        <input type="checkbox" class="checkbox" id="chk" />
+	      <label class="label" for="chk">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+          <div class="ball"></div>
+	      </label>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
     
 
-    <div class="container mt-4">
+    <div class="container" style="display:flex; align-items: center; justify-content: center; height: 500px;">
         <div class="row">
             <div class="col-4">
                 <div class="card">
+
                     <div class="avatar-ctn">
                         <img src="avatar.png" class="avatar" alt="user profile picture" />
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">John</h5>
-                        <p class="card-text">Example</p>
+                        <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+                        <p class="card-text">{{user.email}}</p>
                         <a href="#" class="btn btn-primary"> Test </a>
                     </div>
+                    
+
                 </div>
             </div>
             <div class="col-8">
                 <div class="card text-center">
                     <div class="card-header">
-                        Profile Page
+                       <h5 class="'card-title">Hey {{user.first_name}} welcome back</h5>
                     </div>
-                    <div class="card-body">
-                        <h5 class="'card-title">Hello Welcome Back</h5>
-                        <p class="card-text">Example</p>
+                    {{!-- <div class="card-body">
+                
+                        <p class="card-text">{{user.email}}</p>
                         <a href="#" class="btn btn-primary"> Test </a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Node MySQL
-                    </div>
+                    </div> --}}
+                
+                
+                <div class="card text-center">
+                    <table class="table table-success table-striped">
+                        <tr>
+                            <th>Change First Name:</th>
+                            <th>
+                                <form id="fnameChange" action="/auth/changeFirstName" method="POST">
+                                    <th>
+                                        <input class="inputText" type="text" id="newfname" name="newfname"
+                                        placeholder="New First Name">
+                                    </th>
+                                    <p id="fnamemsg"></p>
+                                    <th>
+                                        <button  type="submit"  value="Submit"> Submit </button>
+                                    </th>
+                                </form> 
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th> Last Name: </th>
+                            <th>
+                                <form id="lnameChange" action="/auth/changeLastName" method="POST">
+                                    <th>
+                                        <input class="inputText" type="text" id="newlname" name="newlname"
+                                        placeholder="New Last Name">
+                                    </th>
+                                    <p id="lnamemsg"></p>
+                                    <th>
+                                        <button  type="submit"  value="Submit"> Submit </button>
+                                    </th>
+                                </form>
+                            </th>
+                        </tr>
+
+
+
+
+                    </table>
+
                 </div>
+
+            
+
+                <div class="card-footer text-muted">
+                        Node MySQL
+                </div>
+         
+
+     
+              
+                 
+                        
+              
+          
+
+                    
+                
             </div>
         </div>
+
+    
 
        
       {{#if message }}
@@ -75,5 +153,6 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="/mode.js"></script>
 </body>
 </html>

@@ -7,6 +7,12 @@ router.post('/register', authController.register);
 
 router.post('/login', authController.login);
 
+router.get('/logout', authController.logout);
 
+router.post('/changeFirstName', authController.changeFirstName);
+
+router.post('/changeLastName', authController.changeLastName);
+
+router.get('/editTrip', authController.showTrip);
 
 module.exports = router;

@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+
+
 body {
-  background-color: #f7ede2;
   pad: 30px 60px;
-  color: #5e60ce;
+  background-color: #fafafa;
   justify-content: space-between;
 }
 
@@ -17,9 +24,9 @@ li {
   color: #fff;
 }
 
-div {
+/* div {
   color: black;
-}
+} */
 
 li a {
   font-weight: bold;
@@ -42,3 +49,57 @@ li a:hover {
   width: 65%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
+
+.profileView {
+  width: 100%;
+  min-width: 1110px;
+  height: 60%;
+  /* min-height: 625px; */
+  border-collapse: collapse;
+}
+
+.name_box{
+  display: flex;
+  justify-content: right;
+  color: white;
+  margin-top: 1.5%;
+  font-weight: bold;
+}
+
+
+/* sort trip table */
+
+.btn-container {
+  height: 80%;
+  float: right;
+  /* display: inline; */
+  /* margin-left: 0.5em; */
+}
+
+.btn-container .btn-holder {
+  margin: 0;
+  display: flexs;
+  padding: 0;
+  /* border: 1px solid black; */
+}
+
+.sort-btn{
+  /* height: 15px; */
+  /* width: 15px; */
+  padding: 0;
+  /* line-height: 60%; */
+  font-size: 15px;
+  color: #fafafa;
+  background-color: #fca311;
+  padding-left: 2.5px;
+  padding-right: 2.5px;
+  border: 0.5px solid black;
+}
+
+a{
+  text-decoration: none;
+  color: black; 
+}
+
+
+

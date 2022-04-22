@@ -6,48 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/mode.css">
     <title>Document</title>
 </head>
 <body>
 
-    <nav class="nav">
-      <h4 style="padding-top: 2%; padding-left:2%">Road Roughness Database Management</h4>
-    </nav>
-    <ul class="nav justify-content-end" style="--bs-text-opacity: .5;>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/register">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
-    </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="/register" style="color: white;">Register</a></li> 
+        </ul>
+
+        <div class="d-flex nav-item mode" >
+          <input type="checkbox" class="checkbox" id="chk" />
+          <label class="label" for="chk">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <div class="ball"></div>
+          </label>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+
     
 
-    <div class="container mt-4" style="position: absolute; left: 35%;">
+    <div style="display:flex; align-items: center; justify-content: center; height:fit-content; width:100%; padding: 3%;">
        <div class="card" style="width: 25rem;">
         <div class="card-body">
           <form action="/auth/register" method="POST">
               <div class="mb-3">
                 <label for="firstName" class="form-label">First Name</label>
-                <input class="form-control" type="text" class="form-control" id="firstName" name="firstName" required>
+                <input class="form-control" type="text" id="firstName" name="firstName" required>
               </div>
 
               <div class="mb-3">
                 <label for="lastName" class="form-label">Last Name</label>
-                <input class="form-control" type="text" class="form-control" id="lastName" name="lastName" required>
+                <input class="form-control" type="text" id="lastName" name="lastName" required>
               </div>
 
               <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input class="form-control" type="email" class="form-control" id="email" name="email" required>
+                <label for="email" class="form-label">Email</label>
+                <input class="form-control" type="email"  id="email" name="email" required>
               </div>
-              
+
+              <div class="mb-3">
+                <label  for="state" class="form-label">Select which state you are from</label>
+                <select class="form-control" name="state" id="state">
+                  <option value="IA"> Iowa </option>               
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label  for="county" class="form-label">Select which county you are from</label>
+                <select class="form-control" name="county" id="county">
+                  <option value="story"> Story County </option>
+                  <option value="sioux"> Sioux County </option>
+                  <option value="washington"> Washington County </option>
+                  <option value="wayne"> Wayne County </option>
+                  
+                </select>
+              </div>
+             
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input class="form-control" type="password" class="form-control" name="password" id="password" required>
@@ -76,5 +107,6 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="/mode.js"></script>
 </body>
 </html>
