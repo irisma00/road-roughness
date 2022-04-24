@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const async = require("hbs/lib/async");
 const { promisify } = require('util');
 const { Console } = require("console");
-const crypto = require('crypto');
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -530,7 +529,7 @@ exports.login = async (req, res) => {
 exports.register = (req, res) => {
     console.log(req.body);
     const { firstName, lastName, email, state, county, password, passwordConfirm } = req.body;
-    const user_id = crypto.randomUUID();
+    const user_id = Math.floor(1000000000000000 + Math.random() * 900000000000000);
 
     db.query('select email from users where email = ?', [email], async(error, results) => {
         if (error || !(results)) {
