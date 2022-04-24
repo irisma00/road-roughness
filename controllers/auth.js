@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const async = require("hbs/lib/async");
 const { promisify } = require('util');
 const { Console } = require("console");
+const crypto = require('crypto');
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
