@@ -478,6 +478,8 @@ exports.changeFirstName = async (req, res, next) => {
     }
 }
 
+
+
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -523,10 +525,16 @@ exports.login = async (req, res) => {
     }
 }
 
+function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+}
 
 exports.register = (req, res) => {
     console.log(req.body);
     const { firstName, lastName, email, state, county, password, passwordConfirm } = req.body;
+    const user_id = uuidv4();
 
     db.query('select email from users where email = ?', [email], async(error, results) => {
         if (error || !(results)) {
@@ -547,7 +555,7 @@ exports.register = (req, res) => {
         let hashedPassword = await bcrypt.hash(password, 8);
         console.log(hashedPassword);
 
-        db.query('insert into users set ?', { first_name: firstName, last_name: lastName, email: email, state: state, county: county, user_pass: hashedPassword }, (error, results) => {
+        db.query('insert into users set ?', { user_id: user_id, first_name: firstName, last_name: lastName, email: email, state: state, county: county, user_pass: hashedPassword }, (error, results) => {
             if (error) {
                 console.log(error);
             } else {
