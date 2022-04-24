@@ -53,11 +53,32 @@
 
             <li><div class=""><a class="btn btn-outline-light" href="/sortSpeedAsc">Sort</a></div></li>
 
-            <li><div class=""><a class="btn btn-outline-light" href="/sortSpeedAsc">Filter</a></div></li>
+            <li>
+                <form>
+                    <div class="">                      
+                        <label for="start">Date:</label>
+                        <input type="date" id="datePicker" name="start"
+                        min="2022-03-01"  value="2022-03-01">
+
+                        <a class="btn btn-outline-light" href="/">Filter</a>
+                    </div>
+                </form>  
+            </li>
+
+            <li>
+                <form>
+                    <div class="">                      
+                        <label for="start">Date:</label>
+                        <input type="month" id="monthPicker" name="start"
+                        min="2022-03"  value="2022-04">
+
+                        <a class="btn btn-outline-light" href="/">Filter</a>
+                    </div>
+                </form>  
+            </li>
 
             <li><div class=""><a class="btn btn-outline-light" href="/sortSpeedAsc">Unit</a></div></li>
-        </ul>
-        
+        </ul>   
     </div>
     
 

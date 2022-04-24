@@ -44,70 +44,96 @@
     </div>
   </nav>
 
+    <div class="container-fluid table-responsive text-right"  style="padding-top: 2%; padding-left: 20%; padding-right: 20%;">
+        <ul style="padding:1%;  background-color:black">
+            <li><div class=""><a class="btn btn-outline-light" href="/sortSpeedAsc">Sort</a></div></li>
+            <li><div class=""><a class="btn btn-outline-light" href="/sortSpeedAsc">Unit</a></div></li>
+        </ul>   
+    </div>
+
     
 
-    <div style="padding-top: 6%; padding-left: 3%; padding-right: 3%;">
-        <div class="row">
+    <div style=" padding-left: 20%; padding-right: 20%;">
+        <div class="row table-responsive">
             <div class="col-12">
-                <div class="card text-center">
+                <div class="card ">
                     <div class="card-header">
-                       <h5 class="'card-title"> ----- temp ----- </h5>
+                       <h5 class="'card-title text-center"> Trip Information</h5>
                     </div>
-                    {{!-- <div class="card-body">
                 
-                        <p class="card-text">{{user.email}}</p>
-                        <a href="#" class="btn btn-primary"> Test </a>
-                    </div> --}}
-                
-                
-                <div class="card text-center">
-                    <table class="table table-striped">
+                <div class="float-xl-start text-left">
+                    <table class="table table-striped table-bordered  align-middle">
 
                             <tr>
-                                <th>Date and Time</th>
-                                <th>Trip ID</th>
-                                <th>Average MpH</th> 
-                                <th>Corrected IRI</th>
-                                <th>Distance (miles)</th>
-                                <th>Road Name</th>
-                                <th>Segments</th>
-                                <th>Surface Type</th>
-                                <th>Time Taken (h)</th>
-                                <th>Uncorrected IRI</th>
-                                <th>Creater</th>
-                                <th>Road Type</th>
-                                <th></th>
+                              <th>Trip ID:
+                                <span class="trip-data">{{trips.id}}</span>
+                              </th>
+
+                              <th>Date: 
+                                <span class="trip-data">{{trips.created_date}}</span>
+                              </th>                                                                                 
                             </tr>
-                                  
-                            <fieldset>
-                           
-                                <tr>
-                                    <th>{{trips.created_date}}</th>
-                                    <th>{{trips.id}}</th>
-                                    <th>{{trips.avgmph}}</th>
-                                    <th>{{trips.corrected_iri}}</th>
-                                    <th>{{trips.distance}}</th>
-                                    <th>
-                                        <textarea type="text" id="road_name" name="road_name">{{trips.road_name}}</textarea>
-                                    </th>
-                                    <th>{{trips.segments}}</th>
-                                    <th>{{trips.surface_type}}</th>
-                                    <th>{{trips.time_taken}}</th>
-                                    <th>{{trips.uncorrected_iri}}</th>
-                                    <th>{{trips.created_by}}</th>                                                   
-                                    <th>{{trips_road_type}}</th>
-                        
 
+                            <tr>
+                              <th>Road Name: 
+                                <span class="trip-data">{{trips.trip_name}}</span>
+                              </th>   
+
+                              <th>Road Type: 
+                                <span class="trip-data">{{trips_road_type}}</span>
+                              </th>
+                            </tr>
+
+                            <tr>
+                              <th>Corrected IRI: 
+                                <span class="trip-data">{{trips.corrected_iri}}</span>
+                              </th>
+
+                              <th>Uncorrected IRI: 
+                                <span class="trip-data">{{trips.uncorrected_iri}}</span>
+                              </th>                              
+                            </tr>
+
+                            <tr>
+                                <th>Creater: 
+                                  <span class="trip-data">{{user.first_name}} {{user.last_name}}</span>
+                                </th>                            
+                            </tr>
+
+                            <tr>
+                                <th>Segments: 
+                                  <span class="trip-data">{{trips.segments}}</span>
+                                </th>
+                                <th>Average Speed: 
+                                  <span class="trip-data">{{trips.avgmph}}</span>
+                                </th>                                
+                            </tr>
+                                
                                
-                                    <th>
-                                        <button  type="submit"  id="tripSubmit" value="Submit"> Edit </button>
-                                    </th> 
-                                </tr>
+                            <tr>
+                                <th>Distance (miles): 
+                                  <span class="trip-data">{{trips.distance}}</span>
+                                </th>
+                                <th>Time Taken (h): 
+                                  <span class="trip-data">{{trips.time_taken}}</span>
+                                </th>
+                              
+                              
+                            </tr>    
+                     
+                            <tr>                        
+                                {{!-- <th>
+                                    <textarea type="text" id="road_name" name="road_name">{{trips.trip_name}}</textarea>
+                                </th> --}}
+
+                                {{!-- <th>
+                                    <button  type="submit"  id="tripSubmit" value="Submit"> Edit </button>
+                                </th>  --}}
+                            </tr>
                            
                         
 
-                            
-                            </fieldset>
+                    
                    </table>
                 </div>
 
