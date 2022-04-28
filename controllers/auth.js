@@ -27,7 +27,7 @@ exports.showTrip = async(req, res, next) => {
 
             db.query('select * from line where id = ?', [req.params.id], (error, result) => {
                 req.trips = result[0]; 
-                road_id = result[0].road_type;
+                // road_id = result[0].road_type;
                 
                 // db.query('select * from Road_Type where type_id = ?', [road_id], (error, result) => {
                 //     req.road = result[0];
