@@ -196,7 +196,6 @@ router.get('/searchByRoadName', authController.searchByRoadName, (req, res) => {
             trips: req.trips,
             user: req.user
         });
-        console.log('wwwwww This is a test from Search Road by Name wwwwww');
     } else {
         res.redirect('/trip');
     } 
@@ -208,7 +207,6 @@ router.get('/searchByDate', authController.searchByDate, (req, res) => {
             trips: req.trips,
             user: req.user
         });
-        console.log('wwwwww This is a test from Search Road by Name wwwwww');
     } else {
         res.redirect('/trip');
     } 

@@ -51,9 +51,6 @@ exports.searchByDate = async (req, res, next) => {
             const date = req.query.datePicker;
             const temp = "%" + date + "%";
 
-            console.log('^^^^^^^^^^^^^^^^^');
-            console.log(temp);
-
             db.query('select * from SmartBox.line where created_by = ? and created_date like ?', [decoded.id, temp], async(error, result) => {
                 if (!result) {
                     return next();
@@ -85,9 +82,6 @@ exports.searchByRoadName = async (req, res, next) => {
             
             const road_name = req.query.road_name;
             const temp = "%" + road_name + "%";
-
-            console.log('^^^^^^^^^^^^^^^^^');
-            console.log(temp);
 
             db.query('select * from SmartBox.line where created_by = ? and trip_name like ?', [decoded.id, temp], async(error, result) => {
                 if (!result) {
