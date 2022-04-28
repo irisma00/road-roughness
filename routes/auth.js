@@ -13,6 +13,6 @@ router.post('/changeFirstName', authController.changeFirstName);
 
 router.post('/changeLastName', authController.changeLastName);
 
-router.get('/editTrip', authController.showTrip);
+//router.get('/editTrip', authController.showTrip);
 
 module.exports = router;

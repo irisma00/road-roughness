@@ -46,21 +46,21 @@
 
     <div class="container-fluid table-responsive"  style="padding-top: 2%; padding-left: 3%; padding-right: 3%;">
         <ul style="padding:1%;  background-color:black">
-            <li><form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <li><form class="d-flex" action="/searchByRoadName" method="GET">
+                    <input class="form-control me-2" type="search" id="road_name" name="road_name" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
             </form></li>
 
             <li><div class=""><a class="btn btn-outline-light" href="/sortSpeedAsc">Sort</a></div></li>
 
             <li>
-                <form>
+                <form action="/searchByDate" method="GET">
                     <div class="">                      
                         <label for="start">Date:</label>
-                        <input type="date" id="datePicker" name="start"
+                        <input type="date" id="datePicker" name="datePicker"
                         min="2022-03-01"  value="2022-03-01">
 
-                        <a class="btn btn-outline-light" href="/">Filter</a>
+                        <button class="btn btn-outline-light" type="submit">Filter</button>
                     </div>
                 </form>  
             </li>
@@ -69,10 +69,10 @@
                 <form>
                     <div class="">                      
                         <label for="start">Date:</label>
-                        <input type="month" id="monthPicker" name="start"
+                        <input type="month" id="monthPicker" name="monthPicker"
                         min="2022-03"  value="2022-04">
 
-                        <a class="btn btn-outline-light" href="/">Filter</a>
+                        <button class="btn btn-outline-light" type="submit">Filter</button>
                     </div>
                 </form>  
             </li>

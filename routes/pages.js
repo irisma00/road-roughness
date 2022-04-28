@@ -1,4 +1,5 @@
 const express = require("express");
+const async = require("hbs/lib/async");
 const authController = require('../controllers/auth');
 
 const router = express.Router();
@@ -187,6 +188,30 @@ router.get('/sortDateTimeAsc', authController.sortDateTimeAsc, (req, res) => {
     } else {
         res.redirect('/trip');
     }
+});
+
+router.get('/searchByRoadName', authController.searchByRoadName, (req, res) => {
+    if (req.trips) {
+        res.render('trip', {
+            trips: req.trips,
+            user: req.user
+        });
+        console.log('wwwwww This is a test from Search Road by Name wwwwww');
+    } else {
+        res.redirect('/trip');
+    } 
+});
+
+router.get('/searchByDate', authController.searchByDate, (req, res) => {
+    if (req.trips) {
+        res.render('trip', {
+            trips: req.trips,
+            user: req.user
+        });
+        console.log('wwwwww This is a test from Search Road by Name wwwwww');
+    } else {
+        res.redirect('/trip');
+    } 
 });
 
 module.exports = router;
