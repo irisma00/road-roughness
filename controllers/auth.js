@@ -29,11 +29,12 @@ exports.showTrip = async(req, res, next) => {
                 req.trips = result[0]; 
                 road_id = result[0].road_type;
                 
-                db.query('select * from Road_Type where type_id = ?', [road_id], (error, result) => {
-                    req.road = result[0];  
-                    // console.log(result)
-                    next();
-                });
+                // db.query('select * from Road_Type where type_id = ?', [road_id], (error, result) => {
+                //     req.road = result[0];
+                //     console.log(result)
+                //     next();
+                // });
+                next();
             }); 
         } catch (error) {
             return next();
