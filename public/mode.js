@@ -19,7 +19,18 @@ if (dd < 10) {
  } 
 	 
 todayDate = yyyy + '-' + mm + '-' + dd;
+
 todayMonth = yyyy + '-' + mm;
-document.getElementById("datePicker").setAttribute("max", todayDate);
+let min_start = document.getElementById("datePicker").value; 
+document.getElementById("startDatePicker").setAttribute("max", todayDate);
+document.getElementById("startDatePicker").setAttribute("max", todayDate);
+document.getElementById("endDatePicker").setAttribute("min", min_start);
 document.getElementById("monthPicker").setAttribute("max", todayMonth);
+
+// document.getElementById("dateRange").daterangepicker({
+// 	opens: 'left'
+// }, function (start, end, label) {
+// 	start.format('YYYY-MM-DD');
+// 	end.format('YYYY-MM-DD');
+// })
  
