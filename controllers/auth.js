@@ -571,13 +571,11 @@ exports.getPersonalTrips = async (req, res, next) => {
                 createCSV(decoded.id, trips);
                 
 
-                for (let i = 0; i < req.trips.length; i++){
-                    req.trips[i].test = "THIS IS A TEST"
-                }
+                // for (let i = 0; i < req.trips.length; i++){
+                //     req.trips[i].test = "THIS IS A TEST"
+                // }
             })
-            // for (let i = 0; i < temp.length; i++){
-            //     temp[i].test = "THIS IS A TEST"
-            // }
+            
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
                 if (!result) {
