@@ -36,3 +36,5 @@ Node.js and MySQL Course [Link](https://telmoacademy.com/courses/enrolleds)
 
 Connect MySQL to AWS Server [Link](https://www.youtube.com/watch?v=v3jH1YxJqaY)
 
+Host Node.js App on AWS [Link](https://youtu.be/b0g-FJ5Zbb8)
+
