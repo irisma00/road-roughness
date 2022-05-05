@@ -24,6 +24,7 @@ Regular: Start the program
     ```
 
 Underdevelopment: Automatically restarting the node application when file changes in the directory are detected
+
     ```sh
     nodemon app.js
     ```
