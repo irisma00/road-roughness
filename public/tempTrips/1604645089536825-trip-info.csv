@@ -1,0 +1,6 @@
+id,avgmph,corrected_iri,created_date,distance,road_type,segments,status,surface_type,time_taken,trip_name,uncorrected_iri,vehicle,created_by,device
+1,60,125,2022-03-18 10:10:10,20,Highway,40,active,PCC,0.4,Lincoln Way,145,truck,1604645089536825,0
+2,70,85,2022-03-21 10:10:10,20,Granular Road,74,active,Granular,0.4,Union Drive,115,car,1604645089536825,0
+3,40,85,2022-03-18 10:10:10,20,City Street,23,active,PCC,0.4,Lincoln Swing,76,truck,1604645089536825,0
+4,75,125,2022-04-13 10:10:10,20,Highway,49,active,Granular,0.4,Iowa Highway 101,208,car,1604645089536825,0
+5,74,85,2022-04-4 10:10:10,20,Granular Road,52,active,HMA,0.4,Union Drive,115,car,1604645089536825,0

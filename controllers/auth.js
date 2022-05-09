@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const async = require("hbs/lib/async");
 const { promisify } = require('util');
 const { Console } = require("console");
+const ObjectsToCsv = require('objects-to-csv')
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -44,6 +45,28 @@ exports.showTrip = async(req, res, next) => {
     }
 }
 
+exports.downloadTrips = async (req, res, next) => {
+    if (req.cookies.jwt) {
+        try {
+            const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET); 
+            console.log('Print decoded Info');
+            console.log(decoded);     
+            
+            const filePath = "./public/tempTrips/" + decoded.id + "-trip-info.csv";
+            // res.download(filePath);
+            req.filePath = filePath;
+            
+
+            return next();
+        } catch (error) {
+            console.log(error);
+            return next();
+        } 
+    } else {
+        next();
+    }
+}
+
 exports.searchByDate = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
@@ -58,6 +81,42 @@ exports.searchByDate = async (req, res, next) => {
                 }
 
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
+            })
+
+            db.query('select * from users where user_id = ?', [decoded.id], async(error, result) => {
+                if (!result) {
+                    return next();
+                }
+                req.user = result[0];
+                return next();
+            })
+        } catch (error) {
+            console.log(error);
+            return next();
+        } 
+    } else {
+        next();
+    }
+}
+
+exports.searchByDateRange = async (req, res, next) => {
+    if (req.cookies.jwt) {
+        try {
+            const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET); 
+            
+            const date = req.query.datePicker;
+            const temp = "%" + date + "%";
+
+            db.query('select * from SmartBox.line where created_by = ? and created_date like ?', [decoded.id, temp], async(error, result) => {
+                if (!result) {
+                    return next();
+                }
+
+                req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], async(error, result) => {
@@ -84,12 +143,14 @@ exports.searchByRoadName = async (req, res, next) => {
             const road_name = req.query.road_name;
             const temp = "%" + road_name + "%";
 
-            db.query('select * from SmartBox.line where created_by = ? and trip_name like ?', [decoded.id, temp], async(error, result) => {
+            db.query('select * from SmartBox.line where created_by = ? and (trip_name like ? or surface_type like ? or road_type like ?)', [decoded.id, temp, temp, temp], async(error, result) => {
                 if (!result) {
                     return next();
                 }
 
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], async(error, result) => {
@@ -120,6 +181,8 @@ exports.sortSpeedDes = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -148,6 +211,8 @@ exports.sortSpeedAsc = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -178,6 +243,8 @@ exports.sortCIRIDes = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -208,6 +275,8 @@ exports.sortCIRIAsc = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -238,6 +307,8 @@ exports.sortDistanceDes = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -268,6 +339,8 @@ exports.sortDistanceAsc = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -298,6 +371,8 @@ exports.sortRoadNameDes = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -328,6 +403,8 @@ exports.sortRoadNameAsc = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -359,6 +436,8 @@ exports.sortSegmentsDes = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -389,6 +468,8 @@ exports.sortSegmentsAsc = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -419,6 +500,8 @@ exports.sortDateTimeDes = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -449,6 +532,8 @@ exports.sortDateTimeAsc = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
+                trips = req.trips;
+                createCSV(decoded.id, trips);
             })
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
@@ -473,7 +558,8 @@ exports.getPersonalTrips = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
             // 1. verify the token
-            const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);     
+            const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);  
+            let trips;
 
             //Check if the user still exists
             db.query('select * from line where created_by = ?', [decoded.id], (error, result) => {
@@ -481,25 +567,21 @@ exports.getPersonalTrips = async (req, res, next) => {
                     return next();
                 }
                 req.trips = result;
-                temp = JSON.stringify(result);
+                trips = req.trips;
+                createCSV(decoded.id, trips);
+                
 
-                for (let i = 0; i < req.trips.length; i++){
-                    req.trips[i].test = "THIS IS A TEST"
-                }
-
-                // console.log(req.trips);
+                // for (let i = 0; i < req.trips.length; i++){
+                //     req.trips[i].test = "THIS IS A TEST"
+                // }
             })
             
-
-            // for (let i = 0; i < temp.length; i++){
-            //     temp[i].test = "THIS IS A TEST"
-            // }
 
             db.query('select * from users where user_id = ?', [decoded.id], (error, result) => {
                 if (!result) {
                     return next();
                 }
-                req.user = result[0];
+                req.user = result[0];              
                 return next();
             })
         } catch (error) {
@@ -664,4 +746,11 @@ exports.logout = async (req, res) => {
     });
 
     res.status(200).redirect('/');
+}
+
+function createCSV(id,data) {
+    const csv = new ObjectsToCsv(data);
+    filePath = "./public/tempTrips/" + id + "-trip-info.csv";
+    csv.toDisk(filePath);
+    return csv;
 }
