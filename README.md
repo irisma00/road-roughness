@@ -2,7 +2,12 @@
 
 ### Web Application
 
-AWS Server: [http://roadroughness-env.eba-2muctb63.us-east-1.elasticbeanstalk.com/trip](http://roadroughness-env.eba-2muctb63.us-east-1.elasticbeanstalk.com/trip)
+AWS Server: [http://roadroughness-env.eba-2muctb63.us-east-1.elasticbeanstalk.com/](http://roadroughness-env.eba-2muctb63.us-east-1.elasticbeanstalk.com/)
+
+Example User:
+    - Email: irisma@gmail.com
+    - Password: 1234
+
 
 Local Host: [http://localhost:8080/](http://localhost:8080/)
 
